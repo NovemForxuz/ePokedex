@@ -13,7 +13,7 @@ function App() {
       <Heading title='Hello'/>
       <Section title='Different title'>This is my section.</Section>
       <Counter setCount={setCount}>Count is {count}</Counter>
-      <List items={["☕Coffee", "🌮Tacos", "👨‍💻Code"]} render={(item: string) => <span>{item}</span>}></List>
+      <List items={["☕Coffee", "🌮Tacos", "👨‍💻Code"]} render={(item: string) => <span className='font-bold'>{item}</span>}></List>
     </>
   )
 }
