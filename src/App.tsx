@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Heading from './components/Heading'
+import Header from './components/Header'
 import Section from './components/Section'
 import Counter from './components/Counter'
 import List from './components/List'
@@ -10,10 +10,12 @@ function App() {
 
   return (
     <>
-      <Heading title='Hello'/>
+    <div className="container w-screen h-screen">
+      <Header title='PokeDex'/>
       <Section title='Different title'>This is my section.</Section>
       <Counter setCount={setCount}>Count is {count}</Counter>
       <List items={["☕Coffee", "🌮Tacos", "👨‍💻Code"]} render={(item: string) => <span className='font-bold'>{item}</span>}></List>
+    </div>
     </>
   )
 }
