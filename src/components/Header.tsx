@@ -29,7 +29,7 @@ const Header = ({ title }: HeaderProps) => {
                   <div tabIndex={0} role="button" className="m-1">
                     <MoreVertIcon />
                   </div>
-                  <ul className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'>
+                  <ul className='dropdown-content z-20 menu p-2 shadow bg-base-100 rounded-box w-52'>
                     <li><a href="">Item 1</a></li>
                     <li><a href="">Item 2</a></li>
                   </ul>
@@ -39,7 +39,6 @@ const Header = ({ title }: HeaderProps) => {
             </div>
           </div>
           {/* Page content */}
-          Content
         </div>
         <Sidebar />
       </div>
