@@ -9,7 +9,7 @@ type HeaderProps = { title: string };
 const Header = ({ title }: HeaderProps) => {
   return (
     <>
-      <div className="drawer">
+      <div className="drawer z-20 sticky top-0 shadow-md">
         <input type="checkbox" className="drawer-toggle" id="my-drawer-3" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
