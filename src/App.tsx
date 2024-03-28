@@ -4,7 +4,7 @@ import Header from './components/Header'
 import Section from './components/Section'
 import Counter from './components/Counter'
 import List from './components/List'
-import Card from './components/Card'
+import Cards from './components/Cards'
 
 function App() {
   const [count, setCount] = useState<number>(1);
@@ -14,7 +14,7 @@ function App() {
     <div className="container w-screen h-screen overflow-scroll">
       <Header title='PokeDex'/>
       <div className="p-2">
-        <Card />
+        <Cards />
       </div>
       {/* <Section title='Different title'>This is my section.</Section>
       <Counter setCount={setCount}>Count is {count}</Counter>
