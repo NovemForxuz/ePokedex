@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Card from '../components/Card'
 import Header from '../components/Header'
 import { PokemonProps } from '../shared/models'
@@ -17,9 +17,10 @@ const Home = () => {
             for (let i = 1; i < count; i++) {
                 // console.log("count", i)
                 api<PokemonProps>(`https://pokeapi.co/api/v2/pokemon/${i}/`)
-                    .then(({ name, order, types, sprites }) => {
-                        // console.log(name, order, types, sprites);
+                    .then(({ id, name, order, types, sprites }) => {
+                        console.log(id, name, order, types, sprites);
                         setPokemons(prevState => [...prevState, {
+                            id,
                             name,
                             order,
                             types,
@@ -33,7 +34,7 @@ const Home = () => {
                         console.error(error)
                     })
             }
-            console.log("i fire card once")
+            console.log("i fire card once", pokemons)
             return () => abortController.abort();
         }
     }, [])
@@ -42,9 +43,9 @@ const Home = () => {
         <div className="flex flex-col container w-screen h-dvh">
             <Header title='PokeDex' />
             <div className="flex-auto p-2 pt-3 overflow-scroll">
-                {pokemons.map(({ name, order, types, sprites }) => {
+                {pokemons.map(({ id, name, order, types, sprites }) => {
                     return <div key={order}>
-                        <Card key={order} name={name} order={order} types={types} sprites={sprites} />
+                        <Card key={order} id={id} name={name} order={order} types={types} sprites={sprites} />
                     </div>
                 })}
             </div>
