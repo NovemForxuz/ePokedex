@@ -1,6 +1,7 @@
 export interface PokemonProps {
+    id: number,
     name: string,
-    order: string,
+    order: number,
     types: [{
         slot: string,
         type: {

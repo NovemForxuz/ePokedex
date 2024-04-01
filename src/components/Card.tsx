@@ -5,7 +5,7 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import { captitalizedFirstLetter, formatId } from '../shared/format';
 import { PokemonProps } from '../shared/models';
 
-const Card = ({ name, order, types, sprites }: PokemonProps) => {
+const Card = ({ id, name, order, types, sprites }: PokemonProps) => {
     // const { name, order, types, sprites } = pokemon;
     const isPokemonDetails = false;
 
@@ -33,7 +33,7 @@ const Card = ({ name, order, types, sprites }: PokemonProps) => {
 
                         <div className="flex flex-row justify-between">
                             <span className="text-xl text-slate-600">{captitalizedFirstLetter(name)}</span>
-                            <span className="font-light text-slate-600 pr-1">{formatId(order, 3)}</span>
+                            <span className="font-light text-slate-600 pr-1">{formatId(id, 3)}</span>
                         </div>
                         <div className="flex flex-row justify-between">
                             <span className="text-slate-500">
@@ -63,7 +63,7 @@ const Card = ({ name, order, types, sprites }: PokemonProps) => {
                     <div className="card-body flex flex-col gap-y-2 py-2 px-3">
                         <div className="flex flex-row justify-between">
                             <div className="flex flex-row gap-x-5">
-                                <span className="font-light">{formatId(order, 3)}</span>
+                                <span className="font-light">{formatId(id, 3)}</span>
                                 <span className="text-slate-700">{captitalizedFirstLetter(name)}</span>
                             </div>
                             <div className="flex flex-row gap-x-4 pr-1 text-slate-500">
