@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 import { pokemon, species } from '../assets/pokeapi_bulbasaur'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
@@ -25,33 +25,38 @@ const Cards = () => {
         genus?: string
     }
 
-    const count = 10;
+    const initialized = useRef(false);
+    const count = 100;
     const [pokemons, setPokemons] = useState<PokemonProps[]>([])
     useEffect(() => {
-        const abortController = new AbortController();
+        if(!initialized.current) {
+            initialized.current = true;
 
-        for(let i=1; i<count; i++){
-            api<PokemonProps>(`https://pokeapi.co/api/v2/pokemon/${i}/`)
-                .then(({ name, order, types, sprites }) => {
-                    // console.log(name, order, types, sprites);
-                    setPokemons(prevState => [...prevState, {
-                        name,
-                        order,
-                        types,
-                        sprites
-                    }]);
-                })
-                .then(() => {
-                    console.log(pokemons)
-                })
-                .catch(error => {
-                    console.error(error)
-                })
+            const abortController = new AbortController();
+    
+            for(let i=1; i<count; i++){
+                // console.log("count", i)
+                api<PokemonProps>(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+                    .then(({ name, order, types, sprites }) => {
+                        // console.log(name, order, types, sprites);
+                        setPokemons(prevState => [...prevState, {
+                            name,
+                            order,
+                            types,
+                            sprites
+                        }]);
+                    })
+                    .then(() => {
+                        // console.log(pokemons)
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
+            }
+            console.log("i fire card once")
+            return () => abortController.abort();
         }
-
-        return () => abortController.abort();
     }, [])
-
 
     // const { name, order, types, sprites } = pokemon;
     const isPokemonDetails = false;
@@ -137,9 +142,8 @@ const Cards = () => {
                 <Card key={i} name={name} order={order} types={types} sprites={sprites}/>
             })} */}
             {pokemons.map(({name, order, types, sprites}) => {
-                return <div>
+                return <div key={order}>
                     <Card key={order} name={name} order={order} types={types} sprites={sprites}/>
-                    {/* {name}{order}{types.map(t => t.type.name)}{sprites.other['official-artwork'].front_default} */}
                 </div>
             })}
         </>
