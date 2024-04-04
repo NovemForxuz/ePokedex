@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Sidebar = () => {
     return (
         <div className="drawer-side z-20">
@@ -16,4 +14,4 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar
+export default Sidebar;

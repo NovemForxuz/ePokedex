@@ -1,4 +1,3 @@
-import React from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import StarsIcon from '@mui/icons-material/Stars';
@@ -46,4 +45,4 @@ const Header = ({ title }: HeaderProps) => {
   )
 }
 
-export default Header
+export default Header;
