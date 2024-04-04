@@ -23,8 +23,15 @@ const Home = () => {
             <Header title='PokeDex' />
             <div className="flex-auto p-2 pt-3 overflow-scroll">
                 {pokemons.map(({ id, name, order, types, sprites }) => {
+                    const pokemonProps = {
+                        id,
+                        name,
+                        order,
+                        types,
+                        sprites
+                    }
                     return <div key={order}>
-                        <Card key={order} id={id} name={name} order={order} types={types} sprites={sprites} />
+                        <Card key={order} isBig={false} pokemon={pokemonProps}/>
                     </div>
                 })}
             </div>

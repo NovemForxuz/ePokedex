@@ -6,9 +6,13 @@ import { PokemonProps } from '../shared/models';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 
-const Card = ({ id, name, types, sprites }: PokemonProps) => {
-    // const { name, order, types, sprites } = pokemon;
-    const isPokemonDetails = false;
+type CardProps = {
+    isBig: boolean,
+    pokemon: PokemonProps,
+}
+
+const Card = ({isBig, pokemon}: CardProps) => {
+    const { id, name, types, sprites } = pokemon;
 
     type TypeBadgeProps = {
         type: string,
@@ -28,7 +32,7 @@ const Card = ({ id, name, types, sprites }: PokemonProps) => {
 
     return (
         <>
-            {isPokemonDetails ?
+            {isBig ?
                 <Link to={`pokemon/${id}`}>
                     <div className="card card-side !p-0 bg-neutral-200 shadow text-black overflow-hidden mb-3">
                         <div className="card-body flex flex-col gap-y-2 py-2 px-3">
