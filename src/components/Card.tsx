@@ -11,7 +11,7 @@ type CardProps = {
     pokemon: PokemonProps,
 }
 
-const Card = ({isBig, pokemon}: CardProps) => {
+const Card = ({ isBig, pokemon }: CardProps) => {
     const { id, name, types, sprites } = pokemon;
 
     type TypeBadgeProps = {
@@ -33,38 +33,36 @@ const Card = ({isBig, pokemon}: CardProps) => {
     return (
         <>
             {isBig ?
-                <Link to={`pokemon/${id}`}>
-                    <div className="card card-side !p-0 bg-neutral-200 shadow text-black overflow-hidden mb-3">
-                        <div className="card-body flex flex-col gap-y-2 py-2 px-3">
+                <div className="card card-side !p-0 bg-neutral-200 shadow text-black overflow-hidden mb-3">
+                    <div className="card-body flex flex-col gap-y-2 py-2 px-3">
 
-                            <div className="flex flex-row justify-between">
-                                <span className="text-xl text-slate-600">{captitalizedFirstLetter(name)}</span>
-                                <span className="font-light text-slate-600 pr-1">{formatId(id, 3)}</span>
-                            </div>
-                            <div className="flex flex-row justify-between">
-                                <span className="text-slate-500">
-                                    {species.genera.filter((type) => type.language.name === 'en')[0].genus}
-                                </span>
-                                <div className="flex flex-row gap-x-4 pr-1 text-slate-500">
-                                    <StarBorderIcon />
-                                    <RadioButtonUncheckedIcon />
-                                </div>
-                            </div>
-
-                            <div className="flex flex-row gap-x-4">
-                                {types.map(({ slot, type }) => (
-                                    <TypeBadge key={slot} type={type.name} textClassN='text-sm' divClassN='p-2' />
-                                ))}
-                            </div>
-
+                        <div className="flex flex-row justify-between">
+                            <span className="text-xl text-slate-600">{captitalizedFirstLetter(name)}</span>
+                            <span className="font-light text-slate-600 pr-1">{formatId(id, 3)}</span>
                         </div>
-                        <div className="flex justify-center content-center w-28 h-28 relative">
-                            <div className='absolute top-0.5 left-[30px] bg-white opacity-75 w-[80px] h-[108px] rounded-l-3xl rounded-r-2xl'></div>
-                            <div className='absolute top-0.5 right-1 bg-white opacity-75 w-[106px] h-[108px] rounded-full'></div>
-                            <figure className='w-28 z-10'><img src={sprites.other['official-artwork'].front_default} alt={name + "'s image"} /></figure>
+                        <div className="flex flex-row justify-between">
+                            <span className="text-slate-500">
+                                {species.genera.filter((type) => type.language.name === 'en')[0].genus}
+                            </span>
+                            <div className="flex flex-row gap-x-4 pr-1 text-slate-500">
+                                <StarBorderIcon />
+                                <RadioButtonUncheckedIcon />
+                            </div>
                         </div>
+
+                        <div className="flex flex-row gap-x-4">
+                            {types.map(({ slot, type }) => (
+                                <TypeBadge key={slot} type={type.name} textClassN='text-sm' divClassN='p-2' />
+                            ))}
+                        </div>
+
                     </div>
-                </Link>
+                    <div className="flex justify-center content-center w-28 h-28 relative">
+                        <div className='absolute top-0.5 left-[30px] bg-white opacity-75 w-[80px] h-[108px] rounded-l-3xl rounded-r-2xl'></div>
+                        <div className='absolute top-0.5 right-1 bg-white opacity-75 w-[106px] h-[108px] rounded-full'></div>
+                        <figure className='w-28 z-10'><img src={sprites.other['official-artwork'].front_default} alt={name + "'s image"} /></figure>
+                    </div>
+                </div>
                 :
                 <Link to={`pokemon/${id}`}>
                     <div className="card card-side !p-0 bg-neutral-200 shadow text-black overflow-hidden mb-3">
