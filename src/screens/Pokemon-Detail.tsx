@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import Card from '../components/Card';
 import { PokemonProps } from '../shared/models';
 import { api } from '../service/Api';
 
 const PokemonDetail = () => {
+    const initialized = useRef(false);
     let { id = 1 } = useParams();
     const initPokemon: PokemonProps = {
         id: +id,
@@ -40,14 +41,22 @@ const PokemonDetail = () => {
     }, []);
 
     useEffect(() => {
-        fetchPokemon;
-    },[]);
+        if (!initialized.current) {
+            initialized.current = true;
 
+            const abortController = new AbortController();
+            fetchPokemon;
+
+            return () => abortController.abort();
+        }
+    }, []);
+
+    const bgColour = 'bg-teal-400';
+    const classNames = 'flex flex-col container w-screen h-dvh p-2 ' + bgColour;
     return (
-        <>
+        <div className={classNames}>
             <Card pokemon={pokemon} isBig={true} />
-            <h1>PokemonDetail {id}</h1>
-        </>
+        </div>
     )
 }
 
