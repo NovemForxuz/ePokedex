@@ -6,7 +6,7 @@ import { api } from '../service/Api';
 
 const PokemonDetail = () => {
     const initialized = useRef(false);
-    let { id = 1 } = useParams();
+    const { id = 1 } = useParams();
     const initPokemon: PokemonProps = {
         id: +id,
         order: 0,
