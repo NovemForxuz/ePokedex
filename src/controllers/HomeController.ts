@@ -9,9 +9,7 @@ export const sortCards = (unsorted: PokemonProps[]): PokemonProps[] => {
 const fetchPokemon = (id: number) => Promise.resolve(api<PokemonProps>(`https://pokeapi.co/api/v2/pokemon/${id}/`))
 
 export const isPokemonExists = (id: number, pokemons: PokemonProps[]): PokemonProps => {
-    const result = pokemons.filter((pokemon) => pokemon.id === id)[0];
-    console.log("Pokemon", id, result);
-    return result;
+    return pokemons.filter((pokemon) => pokemon.id === id)[0];
 }
 
 type loadPokemonsProps = {
@@ -21,8 +19,6 @@ type loadPokemonsProps = {
 
 export const loadPokemons = async({pokemons, setPokemons}: loadPokemonsProps) => {
     const count = 100;
-    console.log("set pokemons:", setPokemons)
-    console.log("pokemons:", pokemons.length)
     for (let i = 1; i < count; i++) {
         if(!isPokemonExists(i, pokemons)) {
             await fetchPokemon(i)
