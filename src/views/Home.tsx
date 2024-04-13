@@ -1,12 +1,14 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Card from '../components/Card'
 import Header from '../components/Header'
-import { PokemonProps } from '../shared/models'
+// import { PokemonProps } from '../shared/models'
 import { loadPokemons } from '../controllers/HomeController'
+import { usePokemonStore } from '../state/pokemonStore'
 
 const Home = () => {
     const initialized = useRef(false);
-    const [pokemons, setPokemons] = useState<PokemonProps[]>([])
+    // const [pokemons, setPokemons] = useState<PokemonProps[]>([])
+    const { pokemons, setPokemons } = usePokemonStore();
     useEffect(() => {
         if (!initialized.current) {
             initialized.current = true;

@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
-import Home from './screens/Home'
-import PokemonDetail from './screens/Pokemon-Detail'
+import Home from './views/Home'
+import PokemonDetail from './views/Pokemon-Detail'
 
 import './App.css'
 
