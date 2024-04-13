@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom'
 import Card from '../components/Card';
 import { usePokemonStore } from '../state/pokemonStore';
+import { loadCurrentPokemon } from '../controllers/PokemonController';
 
 const PokemonDetail = () => {
     const initialized = useRef(false);
@@ -9,20 +10,16 @@ const PokemonDetail = () => {
 
     const { currentPokemon, setCurrentPokemon } = usePokemonStore();
 
-    const loadPokemon = useMemo(() => {
-        setCurrentPokemon(Number(id));
-    },[id, setCurrentPokemon]);
-
     useEffect(() => {
         if (!initialized.current) {
             initialized.current = true;
 
             const abortController = new AbortController();
-            loadPokemon;
+            loadCurrentPokemon({id, setCurrentPokemon});
 
             return () => abortController.abort();
         }
-    }, [loadPokemon]);
+    }, [id, setCurrentPokemon]);
 
     const bgColour = 'bg-teal-400';
     const classNames = 'flex flex-col container w-screen h-dvh p-2 ' + bgColour;

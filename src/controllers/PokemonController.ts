@@ -13,8 +13,8 @@ export const isPokemonExists = (id: number, pokemons: PokemonProps[]): PokemonPr
 }
 
 type loadPokemonsProps = {
-    pokemons: PokemonProps[], 
-    setPokemons: (pokemon: PokemonProps) => void
+    pokemons: PokemonProps[];
+    setPokemons: (pokemon: PokemonProps) => void;
 }
 
 export const loadPokemons = async({pokemons, setPokemons}: loadPokemonsProps) => {
@@ -31,4 +31,13 @@ export const loadPokemons = async({pokemons, setPokemons}: loadPokemonsProps) =>
         }
     }
 }
+
+type loadCPokemonProps = {
+    id: string | number;
+    setCurrentPokemon: (id: number) => void;
+}
+
+export const loadCurrentPokemon = ({ id, setCurrentPokemon }: loadCPokemonProps) => {
+    setCurrentPokemon(Number(id));
+};
 

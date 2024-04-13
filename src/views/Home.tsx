@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import Card from '../components/Card'
 import Header from '../components/Header'
-import { loadPokemons } from '../controllers/HomeController'
+import { loadPokemons } from '../controllers/PokemonController'
 import { usePokemonStore } from '../state/pokemonStore'
 
 const Home = () => {
