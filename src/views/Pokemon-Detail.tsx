@@ -38,7 +38,7 @@ const PokemonDetail = () => {
                     sprites
                 })
             })
-    }, []);
+    }, [id]);
 
     useEffect(() => {
         if (!initialized.current) {
@@ -49,7 +49,7 @@ const PokemonDetail = () => {
 
             return () => abortController.abort();
         }
-    }, []);
+    }, [fetchPokemon]);
 
     const bgColour = 'bg-teal-400';
     const classNames = 'flex flex-col container w-screen h-dvh p-2 ' + bgColour;

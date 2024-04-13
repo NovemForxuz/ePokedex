@@ -8,24 +8,31 @@ export const sortCards = (unsorted: PokemonProps[]): PokemonProps[] => {
 
 const fetchPokemon = (id: number) => Promise.resolve(api<PokemonProps>(`https://pokeapi.co/api/v2/pokemon/${id}/`))
 
-export const loadPokemons = async(setPokemons: (pokemon: PokemonProps) => void) => {
+export const isPokemonExists = (id: number, pokemons: PokemonProps[]): PokemonProps => {
+    const result = pokemons.filter((pokemon) => pokemon.id === id)[0];
+    console.log("Pokemon", id, result);
+    return result;
+}
+
+type loadPokemonsProps = {
+    pokemons: PokemonProps[], 
+    setPokemons: (pokemon: PokemonProps) => void
+}
+
+export const loadPokemons = async({pokemons, setPokemons}: loadPokemonsProps) => {
     const count = 100;
+    console.log("set pokemons:", setPokemons)
+    console.log("pokemons:", pokemons.length)
     for (let i = 1; i < count; i++) {
-        await fetchPokemon(i)
-            .then(({ id, name, order, types, sprites }) => {
-                // setPokemons(prevState => [...prevState, {
-                //     id,
-                //     name,
-                //     order,
-                //     types,
-                //     sprites
-                // }]);
-                setPokemons({ id, name, order, types, sprites })
-                // console.log("pokemons", pokemons);
-            })
-            .catch(error => {
-                console.error(error)
-            })
+        if(!isPokemonExists(i, pokemons)) {
+            await fetchPokemon(i)
+                .then(({ id, name, order, types, sprites }) => {
+                    setPokemons({ id, name, order, types, sprites })
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+        }
     }
 }
 

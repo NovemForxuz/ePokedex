@@ -14,11 +14,11 @@ const Home = () => {
             initialized.current = true;
 
             const abortController = new AbortController();
-            loadPokemons(setPokemons)
+            loadPokemons({pokemons, setPokemons})
             
             return () => abortController.abort();
         }
-    }, [])
+    }, [pokemons, setPokemons]);
     
     return (
         <div className="flex flex-col container w-screen h-dvh">
