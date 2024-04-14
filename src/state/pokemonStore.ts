@@ -25,11 +25,15 @@ interface PokemonState {
     setPokemons: (pokemon: PokemonProps) => void;
     currentPokemon: PokemonProps;
     setCurrentPokemon: (id: number) => void;
+    favourites: number[];
+    setFavourites: (id: number) => void;  
 }
 
 export const usePokemonStore = create<PokemonState>((set) => ({
     pokemons: [],
     setPokemons: (pokemon: PokemonProps) => set((state) => ({pokemons: [...state.pokemons, pokemon]})),
     currentPokemon: initPokemonState,
-    setCurrentPokemon: (id: number) => set((state) => ({currentPokemon: state.pokemons.filter((pokemon) => pokemon.id === id)[0]}))
+    setCurrentPokemon: (id: number) => set((state) => ({currentPokemon: state.pokemons.filter((pokemon) => pokemon.id === id)[0]})),
+    favourites: [],
+    setFavourites: (id: number) => set((state) => ({favourites: [...state.favourites, id]}))
 }))

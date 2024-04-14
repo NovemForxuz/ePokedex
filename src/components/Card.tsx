@@ -4,15 +4,20 @@ import { captitalizedFirstLetter, formatId } from '../shared/format';
 import { PokemonProps } from '../shared/models';
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+// import StarIcon from '@mui/icons-material/Star';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+// import { usePokemonStore } from '../state/pokemonStore';
 
 type CardProps = {
     isBig: boolean,
     pokemon: PokemonProps,
+    isFavourite?: boolean,
+    isCaptured?: boolean
 }
 
 const Card = ({ isBig, pokemon }: CardProps) => {
     const { id, name, types, sprites } = pokemon;
+    // const { favourites } = usePokemonStore();
 
     type TypeBadgeProps = {
         type: string,
@@ -73,6 +78,7 @@ const Card = ({ isBig, pokemon }: CardProps) => {
                                     <span className="text-slate-700">{captitalizedFirstLetter(name)}</span>
                                 </div>
                                 <div className="flex flex-row gap-x-4 pr-1 text-slate-500">
+                                    {/* <div onClick={() => setFavourite(!isFavourite)}>{isFavourite ? <StarIcon /> : <StarBorderIcon />}</div> */}
                                     <StarBorderIcon />
                                     <RadioButtonUncheckedIcon />
                                 </div>
