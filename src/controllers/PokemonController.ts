@@ -41,3 +41,7 @@ export const loadCurrentPokemon = ({ id, setCurrentPokemon }: loadCPokemonProps)
     setCurrentPokemon(Number(id));
 };
 
+export const isFavourite = (id: number, favourites: number[]) => {
+    return favourites.filter((pid) => pid === id)[0] ? true : false;
+}
+

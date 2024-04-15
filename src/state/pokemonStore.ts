@@ -26,7 +26,8 @@ interface PokemonState {
     currentPokemon: PokemonProps;
     setCurrentPokemon: (id: number) => void;
     favourites: number[];
-    setFavourites: (id: number) => void;  
+    setFavourite: (id: number) => void;
+    removeFavourite: (id: number) => void; 
 }
 
 export const usePokemonStore = create<PokemonState>((set) => ({
@@ -35,5 +36,6 @@ export const usePokemonStore = create<PokemonState>((set) => ({
     currentPokemon: initPokemonState,
     setCurrentPokemon: (id: number) => set((state) => ({currentPokemon: state.pokemons.filter((pokemon) => pokemon.id === id)[0]})),
     favourites: [],
-    setFavourites: (id: number) => set((state) => ({favourites: [...state.favourites, id]}))
+    setFavourite: (id: number) => set((state) => ({favourites: [...state.favourites, id]})),
+    removeFavourite: (id: number) => set((state) => ({favourites: state.favourites.filter((pid) => pid !== id)}))
 }))

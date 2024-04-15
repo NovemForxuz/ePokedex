@@ -4,9 +4,10 @@ import { captitalizedFirstLetter, formatId } from '../shared/format';
 import { PokemonProps } from '../shared/models';
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-// import StarIcon from '@mui/icons-material/Star';
+import StarIcon from '@mui/icons-material/Star';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-// import { usePokemonStore } from '../state/pokemonStore';
+import { usePokemonStore } from '../state/pokemonStore';
+import { isFavourite } from '../controllers/PokemonController';
 
 type CardProps = {
     isBig: boolean,
@@ -17,7 +18,7 @@ type CardProps = {
 
 const Card = ({ isBig, pokemon }: CardProps) => {
     const { id, name, types, sprites } = pokemon;
-    // const { favourites } = usePokemonStore();
+    const { favourites, setFavourite, removeFavourite } = usePokemonStore();
 
     type TypeBadgeProps = {
         type: string,
@@ -77,9 +78,9 @@ const Card = ({ isBig, pokemon }: CardProps) => {
                                     <span className="font-light">{formatId(id, 3)}</span>
                                     <span className="text-slate-700">{captitalizedFirstLetter(name)}</span>
                                 </div>
-                                <div className="flex flex-row gap-x-4 pr-1 text-slate-500">
-                                    {/* <div onClick={() => setFavourite(!isFavourite)}>{isFavourite ? <StarIcon /> : <StarBorderIcon />}</div> */}
-                                    <StarBorderIcon />
+                                <div className="flex flex-row items-center gap-x-4 pr-1 text-slate-500">
+                                    <div className="flex items-center" onClick={() => isFavourite(id, favourites) ? removeFavourite(id) : setFavourite(id)}>{isFavourite(id, favourites) ? <StarIcon /> : <StarBorderIcon />}</div>
+                                    {/* <StarBorderIcon /> */}
                                     <RadioButtonUncheckedIcon />
                                 </div>
                             </div>
