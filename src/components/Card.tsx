@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom';
 import { species } from '../assets/pokeapi_bulbasaur'
 import { captitalizedFirstLetter, formatId } from '../shared/format';
 import { PokemonProps } from '../shared/models';
+import { usePokemonStore } from '../state/pokemonStore';
+import { isCaptured, isFavourite } from '../controllers/PokemonController';
 
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import { usePokemonStore } from '../state/pokemonStore';
-import { isFavourite } from '../controllers/PokemonController';
 
 type CardProps = {
     isBig: boolean,
@@ -16,7 +17,7 @@ type CardProps = {
 
 const Card = ({ isBig, pokemon }: CardProps) => {
     const { id, name, types, sprites } = pokemon;
-    const { favourites, setFavourite, removeFavourite } = usePokemonStore();
+    const { favourites, setFavourite, removeFavourite, captures, setCapture, removeCapture } = usePokemonStore();
 
     type TypeBadgeProps = {
         type: string,
@@ -40,6 +41,12 @@ const Card = ({ isBig, pokemon }: CardProps) => {
         e.preventDefault();
     }
 
+    const handleCapturedClick = (e: React.MouseEvent<HTMLElement>) => {
+        isCaptured(id, captures) ? removeCapture(id) : setCapture(id);
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
     return (
         <>
             {isBig ?
@@ -57,8 +64,10 @@ const Card = ({ isBig, pokemon }: CardProps) => {
                             <div className="flex flex-row gap-x-4 pr-1 text-slate-500">
                                 <div className="flex items-center cursor-pointer" onClick={(e) => handleFavouriteClick(e)}>
                                     {isFavourite(id, favourites) ? <StarIcon /> : <StarBorderIcon />}
-                                </div>    
-                                <RadioButtonUncheckedIcon />
+                                </div>
+                                <div className="flex items-center cursor-pointer" onClick={(e) => handleCapturedClick(e)}>
+                                    {isCaptured(id, captures) ? <CheckCircleIcon /> : <RadioButtonUncheckedIcon />}    
+                                </div>
                             </div>
                         </div>
 
@@ -88,7 +97,9 @@ const Card = ({ isBig, pokemon }: CardProps) => {
                                     <div className="flex items-center cursor-pointer" onClick={(e) => handleFavouriteClick(e)}>
                                         {isFavourite(id, favourites) ? <StarIcon /> : <StarBorderIcon />}
                                     </div>
-                                    <RadioButtonUncheckedIcon />
+                                    <div className="flex items-center cursor-pointer" onClick={(e) => handleCapturedClick(e)}>
+                                        {isCaptured(id, captures) ? <CheckCircleIcon /> : <RadioButtonUncheckedIcon />}    
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex flex-row gap-x-4">

@@ -27,7 +27,10 @@ interface PokemonState {
     setCurrentPokemon: (id: number) => void;
     favourites: number[];
     setFavourite: (id: number) => void;
-    removeFavourite: (id: number) => void; 
+    removeFavourite: (id: number) => void;
+    captures: number[];
+    setCapture: (id: number) => void;
+    removeCapture: (id: number) => void;
 }
 
 export const usePokemonStore = create<PokemonState>((set) => ({
@@ -37,5 +40,8 @@ export const usePokemonStore = create<PokemonState>((set) => ({
     setCurrentPokemon: (id: number) => set((state) => ({currentPokemon: state.pokemons.filter((pokemon) => pokemon.id === id)[0]})),
     favourites: [],
     setFavourite: (id: number) => set((state) => ({favourites: [...state.favourites, id]})),
-    removeFavourite: (id: number) => set((state) => ({favourites: state.favourites.filter((pid) => pid !== id)}))
+    removeFavourite: (id: number) => set((state) => ({favourites: state.favourites.filter((pid) => pid !== id)})),
+    captures: [],
+    setCapture: (id: number) => set((state) => ({captures: [...state.captures, id]})),
+    removeCapture: (id: number) => set((state) => ({captures: state.captures.filter((pid) => pid !== id)}))
 }))
