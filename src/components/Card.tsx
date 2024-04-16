@@ -12,8 +12,6 @@ import { isFavourite } from '../controllers/PokemonController';
 type CardProps = {
     isBig: boolean,
     pokemon: PokemonProps,
-    isFavourite?: boolean,
-    isCaptured?: boolean
 }
 
 const Card = ({ isBig, pokemon }: CardProps) => {
@@ -36,6 +34,12 @@ const Card = ({ isBig, pokemon }: CardProps) => {
         )
     }
 
+    const handleFavouriteClick = (e: React.MouseEvent<HTMLElement>) => {
+        isFavourite(id, favourites) ? removeFavourite(id) : setFavourite(id);
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
     return (
         <>
             {isBig ?
@@ -51,7 +55,9 @@ const Card = ({ isBig, pokemon }: CardProps) => {
                                 {species.genera.filter((type) => type.language.name === 'en')[0].genus}
                             </span>
                             <div className="flex flex-row gap-x-4 pr-1 text-slate-500">
-                                <StarBorderIcon />
+                                <div className="flex items-center cursor-pointer" onClick={(e) => handleFavouriteClick(e)}>
+                                    {isFavourite(id, favourites) ? <StarIcon /> : <StarBorderIcon />}
+                                </div>    
                                 <RadioButtonUncheckedIcon />
                             </div>
                         </div>
@@ -79,8 +85,9 @@ const Card = ({ isBig, pokemon }: CardProps) => {
                                     <span className="text-slate-700">{captitalizedFirstLetter(name)}</span>
                                 </div>
                                 <div className="flex flex-row items-center gap-x-4 pr-1 text-slate-500">
-                                    <div className="flex items-center" onClick={() => isFavourite(id, favourites) ? removeFavourite(id) : setFavourite(id)}>{isFavourite(id, favourites) ? <StarIcon /> : <StarBorderIcon />}</div>
-                                    {/* <StarBorderIcon /> */}
+                                    <div className="flex items-center cursor-pointer" onClick={(e) => handleFavouriteClick(e)}>
+                                        {isFavourite(id, favourites) ? <StarIcon /> : <StarBorderIcon />}
+                                    </div>
                                     <RadioButtonUncheckedIcon />
                                 </div>
                             </div>
