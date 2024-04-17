@@ -23,8 +23,8 @@ const Header = ({ title }: HeaderProps) => {
             <div className="flex-none lg:block">
               <ul className='menu menu-horizontal '>
                 {/* Navbar menu content */}
-                <li className='my-auto'><Link to={'favourites'}><StarsIcon className='text-neutral-600' /></Link></li>
-                <li className='my-auto'><Link to={'captured'}><CheckCircleIcon className='text-neutral-600' /></Link></li>
+                <li className='my-auto'><Link to={'/favourites'}><StarsIcon className='text-neutral-600' /></Link></li>
+                <li className='my-auto'><Link to={'/captured'}><CheckCircleIcon className='text-neutral-600' /></Link></li>
                 <li>
                   <div className="dropdown dropdown-bottom dropdown-end">
                     <div tabIndex={0} role="button" className="m-1">

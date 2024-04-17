@@ -1,10 +1,10 @@
 import Header from "../components/Header"
 
-interface CustomPokemonListProp {
+interface UserPokemonListProp {
     mode: string
 }
 
-const CustomPokemonList = ({ mode }: CustomPokemonListProp) => {
+const UserPokemonList = ({ mode }: UserPokemonListProp) => {
   return (
     <>
         <div className="flex flex-col container w-screen h-dvh">
@@ -23,4 +23,4 @@ const CustomPokemonList = ({ mode }: CustomPokemonListProp) => {
   )
 }
 
-export default CustomPokemonList
+export default UserPokemonList
