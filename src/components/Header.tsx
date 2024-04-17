@@ -2,6 +2,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import StarsIcon from '@mui/icons-material/Stars';
 import Sidebar from './Sidebar';
+import { Link } from 'react-router-dom';
 
 type HeaderProps = { title: string };
 
@@ -22,17 +23,18 @@ const Header = ({ title }: HeaderProps) => {
             <div className="flex-none lg:block">
               <ul className='menu menu-horizontal '>
                 {/* Navbar menu content */}
-                <li className='my-auto'><a href=""><StarsIcon className='text-neutral-600' /></a></li>
-                <li className='my-auto'><a href=""><CheckCircleIcon className='text-neutral-600' /></a></li>
-                <li><div className="dropdown dropdown-bottom dropdown-end">
-                  <div tabIndex={0} role="button" className="m-1">
-                    <MoreVertIcon />
+                <li className='my-auto'><Link to={'favourites'}><StarsIcon className='text-neutral-600' /></Link></li>
+                <li className='my-auto'><Link to={'captured'}><CheckCircleIcon className='text-neutral-600' /></Link></li>
+                <li>
+                  <div className="dropdown dropdown-bottom dropdown-end">
+                    <div tabIndex={0} role="button" className="m-1">
+                      <MoreVertIcon />
+                    </div>
+                    <ul className='dropdown-content z-20 menu p-2 shadow bg-base-100 rounded-box w-52'>
+                      <li><a href="">Item 1</a></li>
+                      <li><a href="">Item 2</a></li>
+                    </ul>
                   </div>
-                  <ul className='dropdown-content z-20 menu p-2 shadow bg-base-100 rounded-box w-52'>
-                    <li><a href="">Item 1</a></li>
-                    <li><a href="">Item 2</a></li>
-                  </ul>
-                </div>
                 </li>
               </ul>
             </div>
