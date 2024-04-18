@@ -14,7 +14,7 @@ interface UserPokemonListProp {
 }
 
 const UserPokemonList = ({ mode }: UserPokemonListProp) => {
-    const { pokemons, favourites, captures } = usePokemonStore();
+    const { pokemons, favourites, captures, removeAllFavourite, removeAllCapture } = usePokemonStore();
 
     const captureRate: string = (captures.length / pokemons.length * 100).toFixed(2) + '%';
 
@@ -26,13 +26,28 @@ const UserPokemonList = ({ mode }: UserPokemonListProp) => {
                 {mode === 'favourites' ? 
                 <>
                     <Header title='PokeDex' active='favourites'/>
-                    <div className="w-full h-12 bg-neutral-600 flex flex-row text-white p-2 px-6 justify-between items-center">
+                    <div className="w-full h-12 bg-neutral-600 flex flex-row text-white p-2 px-6 justify-between items-center z-10">
                         <h4>Favourites</h4>
-                        <div className="inline-flex flex-row gap-6 items-center z-10">
+                        <div className="inline-flex flex-row gap-6 items-center">
                             <Link to='/'>
                                 <ArrowBackIcon className="text-white"/>
                             </Link>
-                            <DeleteIcon />
+                            <div className='cursor-pointer' onClick={() => document.getElementById('fav_delete_modal')!.classList.add('modal-open')}>
+                                <DeleteIcon />
+                            </div>
+                            <dialog id="fav_delete_modal" className="modal z-50">
+                                <div className="modal-box text-left">
+                                    <h3 className="font-bold text-lg text-black">Are you sure?</h3>
+                                    <p className="py-4 text-gray-500">Clearing the list cannot be undone</p>
+                                    <div className="modal-action">
+                                    <form method="dialog" className="flex flex-row gap-3">
+                                        {/* if there is a button in form, it will close the modal */}
+                                        <button className="btn" onClick={() => document.getElementById('fav_delete_modal')!.classList.remove('modal-open')}>CANCEL</button>
+                                        <button className="btn" onClick={() => {document.getElementById('fav_delete_modal')!.classList.remove('modal-open');removeAllFavourite();}}>CLEAR</button>
+                                    </form>
+                                    </div>
+                                </div>
+                            </dialog>
                         </div>
                     </div>
                     
@@ -83,7 +98,22 @@ const UserPokemonList = ({ mode }: UserPokemonListProp) => {
                             <Link to='/'>
                                 <ArrowBackIcon className="text-white"/>
                             </Link>
-                            <DeleteIcon />
+                            <div className='cursor-pointer' onClick={() => document.getElementById('captured_delete_modal')!.classList.add('modal-open')}>
+                                <DeleteIcon />
+                            </div>
+                            <dialog id="captured_delete_modal" className="modal z-50">
+                                <div className="modal-box text-left">
+                                    <h3 className="font-bold text-lg text-black">Are you sure?</h3>
+                                    <p className="py-4 text-gray-500">Clearing the list cannot be undone</p>
+                                    <div className="modal-action">
+                                    <form method="dialog" className="flex flex-row gap-3">
+                                        {/* if there is a button in form, it will close the modal */}
+                                        <button className="btn" onClick={() => document.getElementById('captured_delete_modal')!.classList.remove('modal-open')}>CANCEL</button>
+                                        <button className="btn" onClick={() => {document.getElementById('captured_delete_modal')!.classList.remove('modal-open');removeAllCapture();}}>CLEAR</button>
+                                    </form>
+                                    </div>
+                                </div>
+                            </dialog>
                         </div>
                     </div>
 
