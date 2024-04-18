@@ -85,7 +85,7 @@ const Card = ({ isBig, pokemon }: CardProps) => {
                     </div>
                 </div>
                 :
-                <Link to={`pokemon/${id}`}>
+                <Link to={`/pokemon/${id}`}>
                     <div className="card card-side !p-0 bg-neutral-200 shadow text-black overflow-hidden mb-3">
                         <div className="card-body flex flex-col gap-y-2 py-2 px-3">
                             <div className="flex flex-row justify-between">
