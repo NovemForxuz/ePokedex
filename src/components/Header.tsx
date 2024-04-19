@@ -16,7 +16,7 @@ const Header = ({ title, active }: HeaderProps) => {
 
   return (
     <>
-      <div className="drawer z-20 shadow-md">
+      <div className="drawer shadow-md">
         <input type="checkbox" className="drawer-toggle" id="my-drawer-3" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}

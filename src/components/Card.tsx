@@ -111,7 +111,7 @@ const Card = ({ isBig, pokemon }: CardProps) => {
                         <div className="flex justify-center content-center w-32 h-[85px] relative">
                             <div className='absolute top-0.5 left-[26px] bg-white opacity-75 w-[100px] h-[81px] rounded-2xl'></div>
                             <div className='absolute top-0.5 right-10 bg-white opacity-75 w-[85px] h-[81px] rounded-full'></div>
-                            <figure className='w-20 z-10'><img src={sprites.other['official-artwork'].front_default} alt={name + "'s image"} /></figure>
+                            <figure className='w-20 z-[1]'><img src={sprites.other['official-artwork'].front_default} alt={name + "'s image"} /></figure>
                         </div>
                     </div>
                 </Link>

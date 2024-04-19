@@ -68,9 +68,11 @@ const UserPokemonList = ({ mode }: UserPokemonListProp) => {
                     </div>
                     :
                     <>
-                        <div className="w-full h-full flex flex-col justify-center items-center -translate-y-24">
-                            <img className="w-44" src={backgroundImg} alt="no favourites list" />
-                            <p className="w-10/12 mt-2 font-medium text-lg text-gray-500">You did not mark any Pokemon as favourite...</p>
+                        <div className="w-full h-full overflow-hidden">
+                            <div className="h-full flex flex-col justify-center items-center">
+                                <img className="w-44" src={backgroundImg} alt="no favourites list" />
+                                <p className="w-10/12 mt-2 font-medium text-lg text-gray-500">You did not mark any Pokemon as favourite...</p>
+                            </div>
                         </div>
                         <div className="flex flex-row mb-6 mx-6">
                             <div className="w-[5px] bg-gray-500 h-full"></div>
@@ -134,9 +136,11 @@ const UserPokemonList = ({ mode }: UserPokemonListProp) => {
                     </div>
                     :
                     <>
-                        <div className="w-full h-full flex flex-col justify-center items-center -translate-y-24">
-                            <img className="w-44" src={backgroundImg} alt="no favourites list" />
-                            <p className="w-10/12 mt-2 font-medium text-lg text-gray-500">You did not mark any Pokemon as caught...</p>
+                        <div className="w-full h-full overflow-hidden">
+                            <div className="h-full flex flex-col justify-center items-center">
+                                <img className="w-44" src={backgroundImg} alt="no favourites list" />
+                                <p className="w-10/12 mt-2 font-medium text-lg text-gray-500">You did not mark any Pokemon as caught...</p>
+                            </div>
                         </div>
                         <div className="flex flex-row mb-6 mx-6">
                             <div className="w-[5px] bg-gray-500 h-full"></div>
