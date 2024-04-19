@@ -31,6 +31,7 @@ interface PokemonState {
     removeAllFavourite: () => void;
     captures: number[];
     setCapture: (id: number) => void;
+    setAllCapture: () => void;
     removeCapture: (id: number) => void;
     removeAllCapture: () => void;
 }
@@ -46,6 +47,7 @@ export const usePokemonStore = create<PokemonState>((set) => ({
     removeAllFavourite: () => set(() => ({favourites: []})),
     captures: [],
     setCapture: (id: number) => set((state) => ({captures: [...state.captures, id]})),
+    setAllCapture: () => set((state) => ({captures: state.pokemons.map(({id}) => id)})),
     removeCapture: (id: number) => set((state) => ({captures: state.captures.filter((pid) => pid !== id)})),
     removeAllCapture: () => set(() => ({captures: []}))
 }))

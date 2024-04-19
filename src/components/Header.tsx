@@ -3,11 +3,13 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import StarsIcon from '@mui/icons-material/Stars';
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
+import { usePokemonStore } from '../state/pokemonStore';
 
 type HeaderProps = { title: string, active?: string };
 
 const Header = ({ title, active }: HeaderProps) => {
-
+  const { setAllCapture } = usePokemonStore();
+  
   const navIconColour = !active ? 
   { fav: 'text-neutral-600', caught: 'text-neutral-600'} 
     : active === 'favourites' ?
@@ -37,10 +39,23 @@ const Header = ({ title, active }: HeaderProps) => {
                     <div tabIndex={0} role="button" className="m-1">
                       <MoreVertIcon />
                     </div>
-                    <ul className='dropdown-content z-20 menu p-2 shadow bg-base-100 rounded-box w-52'>
-                      <li><a href="">Item 1</a></li>
-                      <li><a href="">Item 2</a></li>
+                    <ul id="menu_dropdown" tabIndex={0} className='dropdown-content z-20 menu p-2 shadow bg-base-100 rounded-box w-52'>
+                      <li><span className='px-4 py-2' onClick={() => {document.getElementById('capture_all_modal')!.classList.add('modal-open');document.getElementById('menu_dropdown')!.blur()}}>Mark all as caught</span></li>
+                      <li><a href="/">Settings</a></li>
                     </ul>
+                    <dialog id="capture_all_modal" className="modal z-50">
+                        <div className="modal-box text-left">
+                            <h3 className="font-bold text-lg text-black">Are you sure?</h3>
+                            <p className="py-4 text-gray-500">This action will mark all Pokemon as caught. This can be undone by tapping the trash can icon in Checklist.</p>
+                            <div className="modal-action">
+                                <form method="dialog" className="flex flex-row gap-3">
+                                    {/* if there is a button in form, it will close the modal */}
+                                    <button className="btn" onClick={() => document.getElementById('capture_all_modal')!.classList.remove('modal-open')}>CANCEL</button>
+                                    <button className="btn" onClick={() => {document.getElementById('capture_all_modal')!.classList.remove('modal-open');setAllCapture();}}>MARK</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
                   </div>
                 </li>
               </ul>

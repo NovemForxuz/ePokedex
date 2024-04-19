@@ -16,7 +16,7 @@ interface UserPokemonListProp {
 const UserPokemonList = ({ mode }: UserPokemonListProp) => {
     const { pokemons, favourites, captures, removeAllFavourite, removeAllCapture } = usePokemonStore();
 
-    const captureRate: string = (captures.length / pokemons.length * 100).toFixed(2) + '%';
+    const captureRate: string = (captures.length / pokemons.length * 100).toFixed(1) + '%';
 
     const backgroundImg = mode === 'favourites' ? emptyFavouritesBg : emptyCapturesBg;
 
@@ -40,11 +40,11 @@ const UserPokemonList = ({ mode }: UserPokemonListProp) => {
                                     <h3 className="font-bold text-lg text-black">Are you sure?</h3>
                                     <p className="py-4 text-gray-500">Clearing the list cannot be undone</p>
                                     <div className="modal-action">
-                                    <form method="dialog" className="flex flex-row gap-3">
-                                        {/* if there is a button in form, it will close the modal */}
-                                        <button className="btn" onClick={() => document.getElementById('fav_delete_modal')!.classList.remove('modal-open')}>CANCEL</button>
-                                        <button className="btn" onClick={() => {document.getElementById('fav_delete_modal')!.classList.remove('modal-open');removeAllFavourite();}}>CLEAR</button>
-                                    </form>
+                                        <form method="dialog" className="flex flex-row gap-3">
+                                            {/* if there is a button in form, it will close the modal */}
+                                            <button className="btn" onClick={() => document.getElementById('fav_delete_modal')!.classList.remove('modal-open')}>CANCEL</button>
+                                            <button className="btn" onClick={() => {document.getElementById('fav_delete_modal')!.classList.remove('modal-open');removeAllFavourite();}}>CLEAR</button>
+                                        </form>
                                     </div>
                                 </div>
                             </dialog>
@@ -108,11 +108,11 @@ const UserPokemonList = ({ mode }: UserPokemonListProp) => {
                                     <h3 className="font-bold text-lg text-black">Are you sure?</h3>
                                     <p className="py-4 text-gray-500">Clearing the list cannot be undone</p>
                                     <div className="modal-action">
-                                    <form method="dialog" className="flex flex-row gap-3">
-                                        {/* if there is a button in form, it will close the modal */}
-                                        <button className="btn" onClick={() => document.getElementById('captured_delete_modal')!.classList.remove('modal-open')}>CANCEL</button>
-                                        <button className="btn" onClick={() => {document.getElementById('captured_delete_modal')!.classList.remove('modal-open');removeAllCapture();}}>CLEAR</button>
-                                    </form>
+                                        <form method="dialog" className="flex flex-row gap-3">
+                                            {/* if there is a button in form, it will close the modal */}
+                                            <button className="btn" onClick={() => document.getElementById('captured_delete_modal')!.classList.remove('modal-open')}>CANCEL</button>
+                                            <button className="btn" onClick={() => {document.getElementById('captured_delete_modal')!.classList.remove('modal-open');removeAllCapture();}}>CLEAR</button>
+                                        </form>
                                     </div>
                                 </div>
                             </dialog>
