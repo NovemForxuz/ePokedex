@@ -85,7 +85,7 @@ const Card = ({ isBig, pokemon }: CardProps) => {
                     </div>
                 </div>
                 :
-                <Link to={`pokemon/${id}`}>
+                <Link to={`/pokemon/${id}`}>
                     <div className="card card-side !p-0 bg-neutral-200 shadow text-black overflow-hidden mb-3">
                         <div className="card-body flex flex-col gap-y-2 py-2 px-3">
                             <div className="flex flex-row justify-between">
@@ -111,7 +111,7 @@ const Card = ({ isBig, pokemon }: CardProps) => {
                         <div className="flex justify-center content-center w-32 h-[85px] relative">
                             <div className='absolute top-0.5 left-[26px] bg-white opacity-75 w-[100px] h-[81px] rounded-2xl'></div>
                             <div className='absolute top-0.5 right-10 bg-white opacity-75 w-[85px] h-[81px] rounded-full'></div>
-                            <figure className='w-20 z-10'><img src={sprites.other['official-artwork'].front_default} alt={name + "'s image"} /></figure>
+                            <figure className='w-20 z-[1]'><img src={sprites.other['official-artwork'].front_default} alt={name + "'s image"} /></figure>
                         </div>
                     </div>
                 </Link>

@@ -4,12 +4,19 @@ import StarsIcon from '@mui/icons-material/Stars';
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
 
-type HeaderProps = { title: string };
+type HeaderProps = { title: string, active?: string };
 
-const Header = ({ title }: HeaderProps) => {
+const Header = ({ title, active }: HeaderProps) => {
+
+  const navIconColour = !active ? 
+  { fav: 'text-neutral-600', caught: 'text-neutral-600'} 
+    : active === 'favourites' ?
+      { fav: 'text-amber-500', caught: 'text-neutral-600'} 
+      : { fav: 'text-neutral-600', caught:'text-green-600'};
+
   return (
     <>
-      <div className="drawer z-20 shadow-md">
+      <div className="drawer shadow-md">
         <input type="checkbox" className="drawer-toggle" id="my-drawer-3" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
@@ -23,8 +30,8 @@ const Header = ({ title }: HeaderProps) => {
             <div className="flex-none lg:block">
               <ul className='menu menu-horizontal '>
                 {/* Navbar menu content */}
-                <li className='my-auto'><Link to={'/favourites'}><StarsIcon className='text-neutral-600' /></Link></li>
-                <li className='my-auto'><Link to={'/captured'}><CheckCircleIcon className='text-neutral-600' /></Link></li>
+                <li className='my-auto'><Link to={'/favourites'}><StarsIcon className={navIconColour.fav} /></Link></li>
+                <li className='my-auto'><Link to={'/captured'}><CheckCircleIcon className={navIconColour.caught} /></Link></li>
                 <li>
                   <div className="dropdown dropdown-bottom dropdown-end">
                     <div tabIndex={0} role="button" className="m-1">
