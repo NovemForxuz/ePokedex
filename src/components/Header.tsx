@@ -20,9 +20,9 @@ const Header = ({ title, active }: HeaderProps) => {
     <>
       <div className="drawer shadow-md">
         <input type="checkbox" className="drawer-toggle" id="my-drawer-3" />
-        <div className="drawer-content flex flex-col">
+        <div className="drawer-content flex flex-col bg-base-300 pb-4">
           {/* Navbar */}
-          <div className="w-full navbar bg-base-300">
+          <div className="navbar pb-0">
             <div className="flex-none lg:hidden">
               <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -60,6 +60,11 @@ const Header = ({ title, active }: HeaderProps) => {
                 </li>
               </ul>
             </div>
+          </div>
+          <div className='flex flex-row w-full justify-between px-5'>
+            <button className='btn btn-sm'>ALL GAME VERSION</button>
+            <button className='btn btn-sm'>ALL GENS</button>
+            <button className='btn btn-sm'>ALL TYPES</button>
           </div>
           {/* Page content */}
         </div>
