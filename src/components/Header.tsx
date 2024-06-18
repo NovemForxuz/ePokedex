@@ -20,7 +20,7 @@ const Header = ({ title, active }: HeaderProps) => {
     <>
       <div className="drawer shadow-md">
         <input type="checkbox" className="drawer-toggle" id="my-drawer-3" />
-        <div className="drawer-content flex flex-col bg-base-300 pb-4">
+        <div className="drawer-content flex flex-col pb-3">
           {/* Navbar */}
           <div className="navbar pb-0">
             <div className="flex-none lg:hidden">
@@ -62,9 +62,9 @@ const Header = ({ title, active }: HeaderProps) => {
             </div>
           </div>
           <div className='flex flex-row w-full justify-between px-5'>
-            <button className='btn btn-sm'>ALL GAME VERSION</button>
-            <button className='btn btn-sm'>ALL GENS</button>
-            <button className='btn btn-sm'>ALL TYPES</button>
+            <button className='btn btn-sm bg-base-300 px-3'>ALL GAME VERSION</button>
+            <button className='btn btn-sm bg-base-300 px-3'>ALL GENS</button>
+            <button className='btn btn-sm bg-base-300 px-3'>ALL TYPES</button>
           </div>
           {/* Page content */}
         </div>
