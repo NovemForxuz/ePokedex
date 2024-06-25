@@ -49,3 +49,11 @@ export const isCaptured = (id: number, captures: number[]) => {
     return captures.filter((pid) => pid === id)[0] ? true : false;
 }
 
+export const toggleButton = (isActive: boolean, setIsActive: React.Dispatch<React.SetStateAction<boolean>>) => {
+    if (isActive) {
+        setIsActive(false);
+    } else {
+        setIsActive(true);
+    }
+}
+
