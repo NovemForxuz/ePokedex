@@ -141,9 +141,9 @@ const PokemonDetail = () => {
                 </div>
             </section>
             <section id='base-stats-container' className='mb-4'>
-            <span className='text-slate-600 font-semibold'>Base Stats</span>
+                <span className='text-slate-600 font-semibold'>Base Stats</span>
                 <div className="card card-side !p-0 bg-white shadow text-black overflow-hidden mt-2">
-                    <div className="card-body flex flex-col gap-4 py-4 px-4 text-slate-500">
+                    <div className="card-body flex flex-col gap-4 pt-4 pb-2 px-4 text-slate-500">
                         <div id='base-stats-nav' role='tablist' className='flex flex-row justify-between gap-4'>
                             <a role='tab' className='btn h-[32px] min-h-0 flex-1 rounded-lg bg-teal-600 border-teal-600 relative'>
                                 <span className='text-teal-900'>Base Stats</span>
@@ -205,6 +205,10 @@ const PokemonDetail = () => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div className='flex gap-2 m-auto'>
+                            <span className='text-slate-600 font-semibold'>Total</span>
+                            <span className='text-teal-500 font-semibold'>{stats.total}</span>
                         </div>
 
                     </div>
