@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import Card from '../components/Card';
 import { usePokemonStore } from '../state/pokemonStore';
@@ -55,6 +55,11 @@ const PokemonDetail = () => {
     const [isCryPlaying, setIsCryPlaying] = useState(false);
     //create useState for stats
     const [statsWidth, setStatsWidth] = useState(stats);
+    const loadStats = useMemo(() => {
+        setStatsWidth(s => convertStatRatio(s));
+    }, [setStatsWidth]);
+
+    loadStats;
     
     let cryButton;
     if (isCryPlaying) {
@@ -69,10 +74,6 @@ const PokemonDetail = () => {
         voiceButton = <SpatialAudioOffIcon className={voiceIcon}/>;
     }
     
-    useEffect(() => {
-        setStatsWidth(convertStatRatio(statsWidth));
-    }, [setStatsWidth]);
-
     return (
         <div className={bgStyles}>
             <Card pokemon={currentPokemon} isBig={true} />
@@ -156,40 +157,52 @@ const PokemonDetail = () => {
                         </div>
                 
                         <div id='base-stats-content' className='flex flex-col gap-2'>
-                            <div className="w-full rounded-lg relative overflow-hidden text-xs">
-                                <span className='absolute h-full w-1/3 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Hp</span>
-                                <div className='h-[32px] min-w-40 min-w-40 bg-teal-500 rounded-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.hp)}}>
-                                    <span className='float-right text-slate-600 py-2 px-4'>{stats.hp}</span>
+                            <div className="w-full rounded-lg flex flex-row relative overflow-hidden text-xs">
+                                <span className='h-full w-1/3 max-w-24 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Hp</span>
+                                <div className='flex-1'>
+                                    <div className='h-[32px] min-w-7 bg-teal-500 rounded-r-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.hp)}}>
+                                        <span className='float-right text-slate-600 py-2 px-4'>{stats.hp}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="w-full rounded-lg relative overflow-hidden text-xs">
-                                <span className='absolute h-full w-1/3 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Attack</span>
-                                <div className='h-[32px] min-w-40 bg-teal-500 rounded-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.attack)}}>
-                                    <span className='float-right text-slate-600 py-2 px-4'>{stats.attack}</span>
+                            <div className="w-full rounded-lg flex flex-row relative overflow-hidden text-xs">
+                                <span className='h-full w-1/3 max-w-24 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Attack</span>
+                                <div className="flex-1">
+                                    <div className='h-[32px] min-w-7 bg-teal-500 rounded-r-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.attack)}}>
+                                        <span className='float-right text-slate-600 py-2 px-4'>{stats.attack}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="w-full rounded-lg relative overflow-hidden text-xs">
-                                <span className='absolute h-full w-1/3 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Defense</span>
-                                <div className='h-[32px] min-w-40 bg-teal-500 rounded-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.defense)}}>
-                                    <span className='float-right text-slate-600 py-2 px-4'>{stats.defense}</span>
+                            <div className="w-full rounded-lg flex flex-row relative overflow-hidden text-xs">
+                                <span className='h-full w-1/3 max-w-24 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Defense</span>
+                                <div className="flex-1">
+                                    <div className='h-[32px] min-w-7 bg-teal-500 rounded-r-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.defense)}}>
+                                        <span className='float-right text-slate-600 py-2 px-4'>{stats.defense}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="w-full rounded-lg relative overflow-hidden text-xs">
-                                <span className='absolute h-full w-1/3 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Sp. Attack</span>
-                                <div className='h-[32px] min-w-40 bg-teal-500 rounded-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.spAttack)}}>
-                                    <span className='float-right text-slate-600 py-2 px-4'>{stats.spAttack}</span>
+                            <div className="w-full rounded-lg flex flex-row relative overflow-hidden text-xs">
+                                <span className='h-full w-1/3 max-w-24 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Sp. Attack</span>
+                                <div className="flex-1">
+                                    <div className='h-[32px] min-w-7 bg-teal-500 rounded-r-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.spAttack)}}>
+                                        <span className='float-right text-slate-600 py-2 px-4'>{stats.spAttack}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="w-full rounded-lg relative overflow-hidden text-xs">
-                                <span className='absolute h-full w-1/3 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Sp. Defense</span>
-                                <div className='h-[32px] min-w-40 bg-teal-500 rounded-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.spDefense)}}>
-                                    <span className='float-right text-slate-600 py-2 px-4'>{stats.spDefense}</span>
+                            <div className="w-full rounded-lg flex flex-row relative overflow-hidden text-xs">
+                                <span className='h-full w-1/3 max-w-24 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Sp. Defense</span>
+                                <div className="flex-1">
+                                    <div className='h-[32px] min-w-7 bg-teal-500 rounded-r-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.spDefense)}}>
+                                        <span className='float-right text-slate-600 py-2 px-4'>{stats.spDefense}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="w-full rounded-lg relative overflow-hidden text-xs">
-                                <span className='absolute h-full w-1/3 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Speed</span>
-                                <div className='h-[32px] min-w-40 bg-teal-500 rounded-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.speed)}}>
-                                    <span className='float-right text-slate-600 py-2 px-4'>{stats.speed}</span>
+                            <div className="w-full rounded-lg flex flex-row relative overflow-hidden text-xs">
+                                <span className='h-full w-1/3 max-w-24 left-0 inline-block align-middle bg-teal-600 text-slate-700 py-2 px-4'>Speed</span>
+                                <div className="flex-1">
+                                    <div className='h-[32px] min-w-7 bg-teal-500 rounded-r-lg overflow-hidden' style={{'width': formatedWidth(statsWidth.speed)}}>
+                                        <span className='float-right text-slate-600 py-2 px-4'>{stats.speed}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
