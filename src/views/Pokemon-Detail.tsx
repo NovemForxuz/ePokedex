@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import Card from '../components/Card';
 import { usePokemonStore } from '../state/pokemonStore';
 import { loadCurrentPokemon, statsProps, toggleButton, convertStatRatio, formatedWidth } from '../controllers/PokemonController';
-import { speciesDescription, speciesHeight, speciesWeight } from '../shared/constants';
+import {constants } from '../shared/constants';
 import SpatialAudioOffIcon from '@mui/icons-material/SpatialAudioOff';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
@@ -37,6 +37,14 @@ const PokemonDetail = () => {
         speed: 45,
         total: 318
     }
+
+    const { 
+        species_desc_ph: speciesDesc,
+        species_weight_ph: weight, 
+        species_height_ph: height,
+        location_desc_ph: locationDesc,
+        location_tip: locationTip,
+    } = constants;
 
 
     /*-- Button Controls */
@@ -83,19 +91,19 @@ const PokemonDetail = () => {
                     <div className="card-body grid grid-cols-2 gap-4 py-4 px-4 text-slate-500">
                         <div className='col-span-2'>
                             <div className="outline outline-[0.5px] rounded-md outline-black/30 px-5 py-1">
-                                {speciesDescription}
+                                {speciesDesc}
                             </div>
                             <span className='text-slate-400 text-xs'>Pokedex entry (from Pokemon Scarlet)</span>
                         </div>
                         <div className='col-span-1'>
                             <div className="outline outline-[0.5px] rounded-md outline-black/30 px-5 py-1">
-                                {speciesHeight}
+                                {height}
                             </div>
                             <span className='text-slate-400 text-xs'>Height</span>
                         </div>
                         <div className='col-span-1'>
                             <div className='outline outline-[0.5px] rounded-md outline-black/30 px-5 py-1'>
-                                {speciesWeight}
+                                {weight}
                             </div>
                             <span className='text-slate-400 text-xs'>Weight</span>
                         </div>
@@ -211,6 +219,21 @@ const PokemonDetail = () => {
                             <span className='text-teal-500 font-semibold'>{stats.total}</span>
                         </div>
 
+                    </div>
+                </div>
+            </section>
+            <section id="location-container">
+            <span className='text-slate-600 font-semibold'>Location</span>
+                <div className="card card-side !p-0 bg-white shadow text-black overflow-hidden mt-2">
+                    <div className="card-body flex flex-col py-4 px-4 text-slate-500">
+                        <div className='flex flex-col justify-between'>
+                            <span className='text-xs text-slate-400'>{locationDesc}</span>
+                            <span className='text-xs text-slate-400 mb-3'>{locationTip}</span>
+                            <div className='btn btn-block h-[32px] min-h-0 rounded-lg bg-teal-100 border-none relative'>
+                                <span className='inline-block align-middle text-teal-500'>Coastal</span>
+                                <InfoOutlinedIcon className='absolute right-3 text-teal-700'/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
